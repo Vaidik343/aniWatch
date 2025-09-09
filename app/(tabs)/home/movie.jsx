@@ -1,49 +1,70 @@
+import AnimeCard from "@/components/AnimeCard";
+import DetailModal from "@/components/DetailModal";
 import NavLinks from "@/components/NavLinks";
-import React from 'react';
-import { FlatList, SafeAreaView, ScrollView, Text, View } from 'react-native';
-
 import { useApi } from "@/context/ApiContext";
-import { Image } from "expo-image";
+import React, { useState } from "react";
+import {
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 // import { ScrollView } from "react-native-reanimated/lib/typescript/Animated";
 
-
 const movie = () => {
+  const { moviesAnime, loading } = useApi();
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const {moviesAnime, loading } = useApi()
+  const openModel = (anime) => {
+    setSelectedMovie(anime);
+    setModalVisible(true);
+  };
 
-
-  if(loading) return <Text className="color-white text-center">Loading...</Text>
+  if (loading)
+    return <Text className="color-white text-center">Loading...</Text>;
   return (
-  <View className="flex-1 justify-center  bg-[#020617]">
-           
-                 <NavLinks className="absolute top-5"/>
-                <ScrollView>
-                <SafeAreaView>
-                 <View className="movieData">
-                  <FlatList   
-                  className="mb-2 mt-1"
-                   keyExtractor={(item) => item.mal_id.toString()}
-                   data={moviesAnime}
-                   renderItem={({item}) => (
-                    <View className="w-40 h-40 bg-gray-800 rounded-md p-2">
-                      <Image  
-                        source={{ uri: item.images?.jpg?.image_url }}
-                      style={{ width: '100%', height: 120, borderRadius: 6 }}
-                      />
-
- <Text className="color-white text-sm">{item.title}</Text>
-                    </View>
-                   )}
-                  
-                  
-                  />
-
+    <View className="flex-1 justify-center  bg-[#020617]">
+      <NavLinks className="absolute top-5" />
+      <ScrollView>
+        <SafeAreaView>
+          <View className="movieData">
+            <FlatList
+              className=""
+              keyExtractor={(item) => item.mal_id.toString()}
+              data={moviesAnime}
+                numColumns={3}
+                columnWrapperStyle={{
+                  justifyContent: "center",
+                  gap: 5,
                 
-                 </View>
-                 </SafeAreaView>
-                 </ScrollView>
-          </View>
-  )
-}
+                }}
+              renderItem={({ item }) => (
+                <TouchableOpacity onPress={() => openModel(item)}  className="w-[30%]">
+                
+                    <AnimeCard
+                 title={item.title}
+                 image={{uri: item.images?.jpg?.image_url}}
+                 />
 
-export default movie
+                    
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        </SafeAreaView>
+      </ScrollView>
+ 
+      
+            <DetailModal
+              visible={modalVisible}
+              onDismiss={() => setModalVisible(false)}
+              anime={selectedMovie}
+            />
+    </View>
+  );
+};
+
+export default movie;

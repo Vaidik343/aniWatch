@@ -3,9 +3,9 @@
 import NavLinks from "@/components/NavLinks";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
+import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
 import { useApi } from "@/context/ApiContext";
-import { Image } from "expo-image";
 import { useState } from "react";
 import { ScrollView } from "react-native";
 
@@ -24,27 +24,29 @@ const Home = () => {
 
   return (
     <View className="flex-1 justify-center  bg-[#020617]">
-      <NavLinks className="absolute top-5" />
+      
+      <NavLinks  />
       <ScrollView>
-        <View className="data mt-7">
+        <View className="data mt-5 ">
           {/* Top */}
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View className="w-4" />}
-            className="mb-4 mt-3"
+      
+            className=""
             keyExtractor={(item) => item.mal_id.toString()}
             data={topAnime}
+            
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => openModel(item)}>
-                <View className="w-40 h-60 bg-gray-800 rounded-md p-2">
-                  <Image
-                    source={{ uri: item.images?.jpg?.image_url }}
-                    style={{ width: "100%", height: 120, borderRadius: 6 }}
-                  />
-                  <Text className="color-white text-sm">{item.title}</Text>
+                <View className="w-40 h-70  ">
+                 <AnimeCard
+                 title={item.title}
+                 image={{uri: item.images?.jpg?.image_url}}
+                 />
                 </View>
               </TouchableOpacity>
+              
             )}
           />
 
