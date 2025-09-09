@@ -18,54 +18,56 @@ const upcoming = () => {
     setModalVisible(true);
   }
 
-   if (loading) return <Text className="color-white text-center">Loading...</Text>;
+   
 
-  return (
-         <View className="flex-1 justify-center  bg-[#020617]">
-         <View className="z-10">
-    <NavLinks />
+ return (
+  <View className="flex-1 bg-[#020617]">
+    <View className="z-10">
+      <NavLinks />
+    </View>
+
+    {loading ? (
+      <View className="flex-1 justify-center items-center">
+        <Text className="text-red-600 text-center">Loading...</Text>
+      </View>
+    ) : (
+      <ScrollView>
+        <View className="data mt-5">
+          <FlatList
+            data={upcomingAnime}
+            keyExtractor={(item) => item.mal_id.toString()}
+            numColumns={2}
+            columnWrapperStyle={{
+              justifyContent:"center",
+              gap: 10,
+            }}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => openModal(item)}
+                className="w-[40%]"
+              >
+                <AnimeCard
+                  image={{ uri: item.images?.jpg?.image_url }}
+                 
+
+                  title={item.title}
+                />
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      </ScrollView>
+    )}console.log("Image URL:", item.images?.jpg?.image_url);
+
+
+    <DetailModal
+      visible={modelVisible}
+      onDismiss={() => setModalVisible(false)}
+      anime={selectedUp}
+    />
   </View>
-            <ScrollView>
-      
-      
-            <View className="data   mt-5 ">
-              
-                {/* Top */}
-           <FlatList 
-        
-           className=""
-           keyExtractor={(item) => item.mal_id.toString()}
-           data={upcomingAnime }
-             numColumns={3}
-                columnWrapperStyle={{
-                  justifyContent: "center",
-                  gap: 5,
-                
-                }}
-           renderItem={({ item }) => (
-            <TouchableOpacity onPress={ () => openModal(item)} className="w-[30%]">
-     
-            <AnimeCard
-                 title={item.title}
-                 image={{uri: item.images?.jpg?.image_url}}
-                 />
-    
-        </TouchableOpacity>
-      )}
+);
 
-           />
-      
-
-      
-            </View>
-            </ScrollView>
-             <DetailModal
-        visible={modelVisible}
-        onDismiss={() => setModalVisible(false)}
-        anime={selectedUp}
-      />
-          </View>
-  )
 }
 
 export default upcoming

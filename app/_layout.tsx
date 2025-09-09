@@ -7,7 +7,7 @@ export default function RootLayout() {
   
    <ApiProvider>
         <PaperProvider>
-    <Slot />;
+    <Slot />
     </PaperProvider>
    </ApiProvider>
    

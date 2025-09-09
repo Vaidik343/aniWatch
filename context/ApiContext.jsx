@@ -2,8 +2,9 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 const ApiContext = createContext();
 
-const ApiProvider = async ({ children }) => {
+const ApiProvider =  ({ children }) => {
   const [topAnime, setTopAnime] = useState([]);
+  const [nowAnime, setNowAnime] = useState([]);
   const [upcomingAnime, setUpcomingAnime] = useState([]);
   const [randomAnime, setRandomAnime] = useState([]);
   const [moviesAnime, setMoviesAnime] = useState([]);
@@ -18,6 +19,12 @@ const ApiProvider = async ({ children }) => {
       const top = await axios.get("https://api.jikan.moe/v4/top/anime");
       // console.log("🚀 ~ fetchData ~ top:", top)
       setTopAnime(top.data.data || []);
+      await new Promise((res) => setTimeout(res, 500));
+
+      const now = await axios.get("https://api.jikan.moe/v4/seasons/now");
+      // console.log("🚀 ~ fetchData ~ now:", now)
+      // console.log("🚀 ~ fetchData ~ top:", top)
+      setNowAnime(now.data.data || []);
       await new Promise((res) => setTimeout(res, 500));
 
       const upcoming = await axios.get(
@@ -76,6 +83,7 @@ const ApiProvider = async ({ children }) => {
 
 const ApiValue = useMemo(() => ({
   topAnime,
+  nowAnime,
   upcomingAnime,
   randomAnime,
   moviesAnime,
@@ -83,7 +91,7 @@ const ApiValue = useMemo(() => ({
   searchAnime,
   searchAnimeByQuery,
   searchLoading,
-}), [topAnime, upcomingAnime, randomAnime, moviesAnime, mangaAnime, searchAnime, searchLoading]);
+}), [topAnime,nowAnime, upcomingAnime, randomAnime, moviesAnime, mangaAnime, searchAnime, searchLoading]);
 
   return <ApiContext.Provider value={ApiValue}>{children}</ApiContext.Provider>;
 };
