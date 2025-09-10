@@ -1,5 +1,5 @@
 import NavLinks from "@/components/NavLinks";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 
 import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
@@ -32,6 +32,7 @@ const upcoming = () => {
       </View>
     ) : (
       <ScrollView>
+            <SafeAreaView>
         <View className="data mt-5">
           <FlatList
             data={upcomingAnime}
@@ -56,6 +57,7 @@ const upcoming = () => {
             )}
           />
         </View>
+        </SafeAreaView>
       </ScrollView>
     )}console.log("Image URL:", item.images?.jpg?.image_url);
 

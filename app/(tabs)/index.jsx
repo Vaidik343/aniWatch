@@ -1,7 +1,7 @@
 // app/(tabs)/index.tsx
 
 import NavLinks from "@/components/NavLinks";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 
 import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
@@ -28,6 +28,7 @@ const Home = () => {
       <NavLinks  />
     
       <ScrollView>
+        <SafeAreaView>
             <Text className="text-yellow-500">Top anime</Text>
         <View className="data mt-5 ">
           {/* Top */}
@@ -54,12 +55,14 @@ const Home = () => {
 
           
         </View>
+        </SafeAreaView>
       </ScrollView>
 {/* now */}
 
           {/* <FlatList /> */}
       <ScrollView>
-        <Text className="text-yellow-500">Now streaming</Text>
+        <SafeAreaView>
+        <Text className="text-yellow-500 sticky z-1">Now streaming</Text>
            <View className="data mt-5 ">
           {/* Top */}
           <FlatList
@@ -89,6 +92,7 @@ const Home = () => {
 
           
         </View>
+        </SafeAreaView>
       </ScrollView>
 
       <DetailModal

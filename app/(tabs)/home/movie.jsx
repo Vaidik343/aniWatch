@@ -7,9 +7,8 @@ import {
   FlatList,
   SafeAreaView,
   ScrollView,
-  Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 // import { ScrollView } from "react-native-reanimated/lib/typescript/Animated";
 
@@ -23,12 +22,19 @@ const movie = () => {
     setModalVisible(true);
   };
 
-  if (loading)
-    return <Text className="color-white text-center">Loading...</Text>;
   return (
-    <View className="flex-1 justify-center  bg-[#020617]">
-      <NavLinks className="absolute top-5" />
-      <ScrollView>
+    <View className="flex-1   bg-[#020617]">
+        <View className="z-10">
+            <NavLinks />
+          </View>
+
+    {loading ? (
+         <View className="flex-1 justify-center items-center">
+              <Text className="text-red-600 text-center">Loading...</Text>
+            </View>
+    ) : (
+
+ <ScrollView>
         <SafeAreaView>
           <View className="movieData">
             <FlatList
@@ -57,6 +63,10 @@ const movie = () => {
         </SafeAreaView>
       </ScrollView>
  
+
+    )}
+
+     
       
             <DetailModal
               visible={modalVisible}

@@ -1,6 +1,6 @@
 import { ROUTES } from "@/constants/routes";
 import { router } from "expo-router";
-import { Text, View } from "react-native";
+import { SafeAreaView, Text, View } from "react-native";
 
 
 import { usePathname } from "expo-router";
@@ -12,6 +12,7 @@ export default function NavLinks() {
 
   const isActive = (route) => pathname === route;
   return (
+    <SafeAreaView>
      <View  className="sticky  top-5 self-center z-10 p-7 flex-row gap-5">
       {[
         { label: "Home", route: ROUTES.HOME},
@@ -31,5 +32,6 @@ export default function NavLinks() {
       ))}
 
     </View>
+    </SafeAreaView>
   );
 }

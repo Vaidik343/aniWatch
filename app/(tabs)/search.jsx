@@ -3,7 +3,7 @@ import { useApi } from '@/context/ApiContext';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 
 export default function Search() {
@@ -14,20 +14,22 @@ export default function Search() {
 
 
   return (
-    <View className='flex-1 mt-5 bg-[#020617] p-4'>
+    <View className='flex-1 mt-5 sticky top-5 bg-[#020617] p-1'>
+      <SafeAreaView>
       <TextInput 
       placeholder='Search anime here...'
       placeholderTextColor='#ccc'
       value={query}
       onChangeText={setQuery}
       onSubmitEditing={ () => searchAnimeByQuery(query)}
-      className='bh-grey-800 text-white px-4 py-2 rounded-md mb-4'
+      className='bh-grey-800 text-white px-4 py-2 rounded-xl mb-4'
       />
 
       {
         searchLoading ? (
           <Text className='text-white text-center'>Searching....</Text>
         ) : (
+          <SafeAreaView>
           <FlatList 
           data={searchAnime}
           keyExtractor={ (item) => item.mal_id.toString()}
@@ -49,9 +51,11 @@ export default function Search() {
           
           
           />
+          </SafeAreaView>
         )
       }
   
+    </SafeAreaView>
     </View>
   );
 }
