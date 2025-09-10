@@ -16,7 +16,7 @@ export default function NavLinks() {
      <View  className="sticky  top-5 self-center z-10 p-7 flex-row gap-5">
       {[
         { label: "Home", route: ROUTES.HOME},
-        { label: "Upcomig", route: ROUTES.UPCOMING},
+        { label: "Upcoming", route: ROUTES.UPCOMING},
         { label: "Movies", route: ROUTES.MOVIE},
         { label: "Manga", route: ROUTES.MANGA},
         { label: "Suggestions", route: ROUTES.SUGGESTION},

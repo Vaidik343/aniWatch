@@ -34,7 +34,7 @@ export default function Search() {
           data={searchAnime}
           keyExtractor={ (item) => item.mal_id.toString()}
           renderItem={ ({item}) => (
-              <TouchableOpacity onPress={ () => router.push(`/anime/${item.mal_id}`)} >
+             <TouchableOpacity onPress={ () => router.push(`/anime/${item.mal_id}`)} >
                 <View className='flex-row items-center mb-4'>
                   <Image  
                   source = {{uri: item.images?.jpg?.image_url}}

@@ -50,7 +50,7 @@ const ApiProvider =  ({ children }) => {
 
       const manga = await axios.get("https://api.jikan.moe/v4/top/manga");
       // console.log("🚀 ~ fetchData ~ manga:", manga)
-      setMangaAnime(random.data.data || []);
+      setMangaAnime(manga.data.data || []);
       await new Promise((res) => setTimeout(res, 500));
 
     } catch (error) {

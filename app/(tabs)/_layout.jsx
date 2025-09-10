@@ -1,17 +1,36 @@
+import { useAuth } from "@/context/AuthContext";
 import { Ionicons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
-
+import { router, Tabs, useSegments } from "expo-router";
+import { useEffect } from "react";
+import { Text } from "react-native";
+  
 const TabLayout = () => {
+  const { user, authLoading } = useAuth();
+  const segments = useSegments();
+
+  useEffect(() => {
+    const currentTab = segments[1]; // e.g. "search", "favorite"
+    const protectedTabs = ["search", "favorite", "movie", "upcoming", "manga", "suggestions"];
+
+
+    if (!authLoading && !user && protectedTabs.includes(currentTab)) {
+      router.replace("/Login");
+    }
+  }, [authLoading, user, segments]);
+
+  if (authLoading) {
+    return <Text className="text-white text-center">Checking auth...</Text>;
+  }
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
         tabBarItemStyle : {
-          width: '100%',
-          height: '100%',
+          flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
+          paddingVertical: 10,
         },
 
         tabBarStyle: {
@@ -36,13 +55,9 @@ const TabLayout = () => {
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "home-sharp" : "home-outline"}
-              color="#A8B5DB"
+              name={focused ? "home-sharp" : "home-outline" }
+              color={color}
               size={24}
-              
-
-              
-              
             />
           ),
         }}

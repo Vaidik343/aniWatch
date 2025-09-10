@@ -26,8 +26,7 @@ const Home = () => {
     <View className="flex-1 justify-center  bg-[#020617]">
       
       <NavLinks  />
-    
-      <ScrollView>
+    <ScrollView>    
         <SafeAreaView>
             <Text className="text-yellow-500">Top anime</Text>
         <View className="data mt-5 ">
@@ -35,39 +34,39 @@ const Home = () => {
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
-      
+
             className=""
             keyExtractor={(item) => item.mal_id.toString()}
             data={topAnime}
-            
+
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => openModel(item)}>
                 <View className="w-40 h-50  ">
                  <AnimeCard
-                 title={item.title}
+                 title={item.title_english || item.title}
                  image={{uri: item.images?.jpg?.image_url}}
                  />
                 </View>
               </TouchableOpacity>
-              
+
             )}
           />
 
-          
+
         </View>
         </SafeAreaView>
-      </ScrollView>
+    
 {/* now */}
 
           {/* <FlatList /> */}
-      <ScrollView>
+    
         <SafeAreaView>
         <Text className="text-yellow-500 sticky z-1">Now streaming</Text>
            <View className="data mt-5 ">
           {/* Top */}
           <FlatList
-          
-      
+
+
             className=""
             keyExtractor={(item) => item.mal_id.toString()}
             data={nowAnime}
@@ -75,31 +74,33 @@ const Home = () => {
                 columnWrapperStyle={{
                   justifyContent: "center",
                   gap: 5,
-                
+
                 }}
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => openModel(item)}>
                 <View className="w-40 h-50  ">
                  <AnimeCard
-                 title={item.title}
+                 title={item.title_english || item.title}
                  image={{uri: item.images?.jpg?.image_url}}
                  />
                 </View>
               </TouchableOpacity>
-              
+
             )}
           />
 
-          
+
         </View>
         </SafeAreaView>
-      </ScrollView>
+
 
       <DetailModal
         visible={modalVisible}
         onDismiss={() => setModalVisible(false)}
         anime={slectedAnime}
       />
+      </ScrollView>
+
     </View>
   );
 };
