@@ -92,13 +92,13 @@ const TabLayout = () => {
           ),
         }}
       />
-
-      <Tabs.Screen
+ <Tabs.Screen
         name="home"
         options={{
           href: null, // <-- this prevents it from being a tab
         }}
       />
+
     </Tabs>
   );
 };

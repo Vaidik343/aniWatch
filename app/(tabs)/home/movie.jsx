@@ -23,6 +23,7 @@ const movie = () => {
   };
 
   return (
+     <ScrollView>
     <View className="flex-1   bg-[#020617]">
         <View className="z-10">
             <NavLinks />
@@ -34,7 +35,7 @@ const movie = () => {
             </View>
     ) : (
 
- <ScrollView>
+
         <SafeAreaView>
           <View className="movieData">
             <FlatList
@@ -51,7 +52,7 @@ const movie = () => {
                 <TouchableOpacity onPress={() => openModel(item)}  className="w-[30%]">
                 
                     <AnimeCard
-                 title={item.title}
+                //  title={item.title}
                  image={{uri: item.images?.jpg?.image_url}}
                  />
 
@@ -61,7 +62,7 @@ const movie = () => {
             />
           </View>
         </SafeAreaView>
-      </ScrollView>
+     
  
 
     )}
@@ -74,6 +75,7 @@ const movie = () => {
               anime={selectedMovie}
             />
     </View>
+     </ScrollView>
   );
 };
 

@@ -21,12 +21,18 @@ const DetailModal = ({ visible, onDismiss, anime }) => {
           showsVerticalScrollIndicator={false}
         >
           <Image
-            source={{ uri: anime.images?.jpg?.image_url }}
-            style={{ width: "100%", height: 200, borderRadius: 8 }}
+            source={{ uri: anime.images?.webp?.image_url }}
+            style={{ width: "100%", height: 350, borderRadius: 8 }}
           />
 
           <Text className="text-white text-lg font-bold mt-2">
-            {anime.title}
+            {anime.type}
+          </Text>
+          <Text className="text-white text-lg font-bold mt-2">
+            {anime.title_english}
+          </Text>
+            <Text className="text-white text-lg mt-2">
+            Status: {anime.status ?? "N/A"}
           </Text>
           <Text className="text-white text-sm mt-1">
             {anime.synopsis || "No synopsis available."}
@@ -34,6 +40,7 @@ const DetailModal = ({ visible, onDismiss, anime }) => {
           <Text className="text-white text-xs mt-2">
             Episodes: {anime.episodes ?? "N/A"}
           </Text>
+        
           <Text className="text-white text-xs">
             Score: {anime.score ?? "N/A"}
           </Text>

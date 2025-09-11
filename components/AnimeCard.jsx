@@ -6,7 +6,7 @@ const AnimeCard = ({ title, image }) => {
     <View className=" rounded-lg overflow-hidden p-1 w-full">
    <Image
   source={image}
-  style={{ width: "100%", height: 200, borderRadius: 8, marginBottom: 8 }}
+  style={{ width: "100%", height: 200, borderRadius: 5, marginBottom: 8 }}
   contentFit="cover"
 />
 

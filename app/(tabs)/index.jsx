@@ -23,14 +23,24 @@ const Home = () => {
     return <Text className="color-white text-center">Loading...</Text>;
 
   return (
-    <View className="flex-1 justify-center  bg-[#020617]">
+        <ScrollView> 
+    <View className="flex-1 bg-[#020617]">
       
-      <NavLinks  />
-    <ScrollView>    
-        <SafeAreaView>
+     <View className="z-10">
+                 <NavLinks />
+               </View>
+   
+
+   {loading ? (
+    <View className="flex-1 justify-center items-center">
+                  <Text className="text-red-600 text-center">Loading...</Text>
+                </View>
+   ) : (
+
+    <SafeAreaView>
             <Text className="text-yellow-500">Top anime</Text>
         <View className="data mt-5 ">
-          {/* Top */}
+         
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -43,7 +53,7 @@ const Home = () => {
               <TouchableOpacity onPress={() => openModel(item)}>
                 <View className="w-40 h-50  ">
                  <AnimeCard
-                 title={item.title_english || item.title}
+                //  title={ item.title}
                  image={{uri: item.images?.jpg?.image_url}}
                  />
                 </View>
@@ -54,16 +64,16 @@ const Home = () => {
 
 
         </View>
-        </SafeAreaView>
     
-{/* now */}
+    
 
-          {/* <FlatList /> */}
+
+       
     
-        <SafeAreaView>
+        {/* Now streaming */}
         <Text className="text-yellow-500 sticky z-1">Now streaming</Text>
            <View className="data mt-5 ">
-          {/* Top */}
+       
           <FlatList
 
 
@@ -80,7 +90,7 @@ const Home = () => {
               <TouchableOpacity onPress={() => openModel(item)}>
                 <View className="w-40 h-50  ">
                  <AnimeCard
-                 title={item.title_english || item.title}
+                //  title={item.title_english || item.title}
                  image={{uri: item.images?.jpg?.image_url}}
                  />
                 </View>
@@ -92,6 +102,8 @@ const Home = () => {
 
         </View>
         </SafeAreaView>
+   )}
+        
 
 
       <DetailModal
@@ -99,9 +111,10 @@ const Home = () => {
         onDismiss={() => setModalVisible(false)}
         anime={slectedAnime}
       />
-      </ScrollView>
+     
 
     </View>
+     </ScrollView>
   );
 };
 

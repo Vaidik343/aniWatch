@@ -3,7 +3,7 @@ import DetailModal from "@/components/DetailModal";
 import NavLinks from "@/components/NavLinks";
 import { useApi } from "@/context/ApiContext";
 import React, { useState } from "react";
-import { FlatList, ScrollView, Text, View } from "react-native";
+import { FlatList, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 const manga = () => {
   const { mangaAnime, loading } = useApi();
@@ -19,10 +19,18 @@ const manga = () => {
     return <Text className="color-white text-center">Loading...</Text>;
 
   return (
+          <ScrollView>
     <View className="flex-1 justify-center  bg-[#020617]">
-      <NavLinks className="absolute top-5" />
-      <ScrollView>
-        <View className="data">
+         <View className="z-10">
+                  <NavLinks />
+                </View>
+
+
+
+{loading ? ( <View className="flex-1 justify-center items-center">
+              <Text className="text-red-600 text-center">Loading...</Text>
+            </View>) : (
+<View className="mangaData">
          
           <FlatList
             className=""
@@ -38,7 +46,7 @@ const manga = () => {
               <TouchableOpacity onPress={ () => openModel(item)} className="w-[30%]">
                
              <AnimeCard
-                 title={item.title}
+                //  title={item.title}
                  image={{uri: item.images?.jpg?.image_url}}
                  />
 
@@ -47,7 +55,9 @@ const manga = () => {
             )}
           />
         </View>
-      </ScrollView>
+)}
+        
+      
 
       <DetailModal
         visible={modalVisible}
@@ -55,6 +65,7 @@ const manga = () => {
         anime={selectedManga}
       />
     </View>
+    </ScrollView>
   );
 };
 

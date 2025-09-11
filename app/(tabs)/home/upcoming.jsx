@@ -51,7 +51,7 @@ const upcoming = () => {
                   image={{ uri: item.images?.jpg?.image_url }}
                  
 
-                  title={item.title}
+                  // title={item.title}
                 />
               </TouchableOpacity>
             )}
