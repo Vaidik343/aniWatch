@@ -1,3 +1,4 @@
+import { addFavorite } from "@/utils/favoriteStorage";
 import { Image } from "expo-image";
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
@@ -6,6 +7,10 @@ import { Button, Modal, Portal, Text } from "react-native-paper";
 const DetailModal = ({ visible, onDismiss, anime }) => {
   if (!anime) return null;
 
+
+  const handleSaveFavorite = async (item) => {
+    await addFavorite(user.id, item)
+  }
   return (
     <Portal>
       {/* Dimmed backdrop */}
@@ -25,14 +30,14 @@ const DetailModal = ({ visible, onDismiss, anime }) => {
             style={{ width: "100%", height: 350, borderRadius: 8 }}
           />
 
-          <Text className="text-white text-lg font-bold mt-2">
+          <Text className="text-white text-lg font-bold mt-2" numberOfLines={2}>
             {anime.type}
           </Text>
-          <Text className="text-white text-lg font-bold mt-2">
+          <Text className="text-white text-lg font-bold mt-2"  numberOfLines={2}>
             {anime.title_english}
           </Text>
-            <Text className="text-white text-lg mt-2">
-            Status: {anime.status ?? "N/A"}
+            <Text className="text-white text-lg mt-2"  numberOfLines={1}>
+            Status: {anime.status ?? "N/A" }
           </Text>
           <Text className="text-white text-sm mt-1">
             {anime.synopsis || "No synopsis available."}
@@ -44,7 +49,7 @@ const DetailModal = ({ visible, onDismiss, anime }) => {
           <Text className="text-white text-xs">
             Score: {anime.score ?? "N/A"}
           </Text>
-
+ <Button title="Add to Favorites" onPress={() => handleSaveFavorite()}  className="text-white text-xs"  />
           <Button onPress={onDismiss} style={{ marginTop: 10 }}>
             Close
           </Button>

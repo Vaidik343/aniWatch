@@ -23,7 +23,7 @@ export default function NavLinks() {
       ].map( ({label, route}) =>(
         <Text
         key={route}
-        className={`text-sm ${isActive(route) ? "text-yellow-400 font-bold" : "text-white font-bold"}`}
+        className={`text-sm ${isActive(route) ? "text-light-500 font-bold" : "text-white font-bold"}`}
         onPress= { () => router.push(route)}
         >
           {label}

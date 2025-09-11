@@ -4,6 +4,7 @@ import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-nati
 import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
 import { useApi } from "@/context/ApiContext";
+import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 import { ScrollView } from "react-native";
 
@@ -12,14 +13,15 @@ const upcoming = () => {
   const {upcomingAnime , loading } = useApi()
   const [selectedUp, setSelectedUp] = useState(null);
   const [modelVisible, setModalVisible] = useState(false);
+ const { user} = useAuth();
+
 
   const openModal =  (anime) => {
     setSelectedUp(anime);
     setModalVisible(true);
   }
 
-   
-
+ 
  return (
   <View className="flex-1 bg-[#020617]">
     <View className="z-10">
@@ -48,7 +50,7 @@ const upcoming = () => {
                 className="w-[40%]"
               >
                 <AnimeCard
-                  image={{ uri: item.images?.jpg?.image_url }}
+                  image={item.images?.jpg?.image_url} 
                  
 
                   // title={item.title}
@@ -56,6 +58,7 @@ const upcoming = () => {
               </TouchableOpacity>
             )}
           />
+      
         </View>
         </SafeAreaView>
       </ScrollView>
@@ -66,7 +69,10 @@ const upcoming = () => {
       visible={modelVisible}
       onDismiss={() => setModalVisible(false)}
       anime={selectedUp}
-    />
+    >
+     
+
+    </DetailModal>
   </View>
 );
 

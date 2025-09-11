@@ -5,13 +5,16 @@ const getFavorites = async (userId) => {
     return raw ? JSON.parse(raw) : [];
 };
 
-const addFavorite = async (userId) => {
-    const current = await getFavorites(userId);
-    const update = [...current, {...item, savedAt: Date.now() }];
-    await AsyncStore.setItem(`favorites-${userId}`, JSON.stringify(userId));
-    return update;
+const addFavorite = async (userId, item) => {
+  const current = await getFavorites(userId);
+  const exists = current.some(fav => fav.id === item.id);
+  if (exists) return current;
 
-}
+  const update = [...current, { ...item, savedAt: Date.now() }];
+  await AsyncStore.setItem(`favorites-${userId}`, JSON.stringify(update));
+  return update;
+};
+
 const removeFavorite = async (userId, id) => {
     const current = await getFavorites(userId);
     const updated  = current.filter( (item) => item.id !== id);
@@ -21,3 +24,4 @@ const removeFavorite = async (userId, id) => {
 
 
 export { addFavorite, getFavorites, removeFavorite };
+

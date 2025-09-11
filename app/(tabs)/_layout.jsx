@@ -9,8 +9,8 @@ const TabLayout = () => {
   const segments = useSegments();
 
   useEffect(() => {
-    const currentTab = segments[1]; // e.g. "search", "favorite"
-    const protectedTabs = ["search", "favorite", "movie", "upcoming", "manga", "suggestions"];
+    const currentTab = segments[1]; 
+    const protectedTabs = [ "favorite", "movie", "upcoming", "manga", "suggestions"];
 
 
     if (!authLoading && !user && protectedTabs.includes(currentTab)) {
@@ -86,6 +86,20 @@ const TabLayout = () => {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "bookmark-sharp" : "bookmark-outline"}
+              color={color}
+              size={24}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "person-sharp" : "person-outline"}
               color={color}
               size={24}
             />
