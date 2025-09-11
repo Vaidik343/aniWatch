@@ -38,7 +38,7 @@ const Home = () => {
    ) : (
 
     <SafeAreaView>
-            <Text className="text-yellow-500">Top anime</Text>
+            <Text className="text-light-400">Top anime</Text>
         <View className="data mt-5 ">
          
           <FlatList
@@ -71,7 +71,7 @@ const Home = () => {
        
     
         {/* Now streaming */}
-        <Text className="text-yellow-500 sticky z-1">Now streaming</Text>
+        <Text className="text-light-400 sticky z-1">Now streaming</Text>
            <View className="data mt-5 ">
        
           <FlatList

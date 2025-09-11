@@ -1,16 +1,33 @@
+import { useAuth } from "@/context/AuthContext";
 import { addFavorite } from "@/utils/favoriteStorage";
 import { Image } from "expo-image";
-import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import { Button, Modal, Portal, Text } from "react-native-paper";
 
 const DetailModal = ({ visible, onDismiss, anime }) => {
+  const { user } = useAuth();
+  const [isAdding, setIsAdding] = useState(false);
+
   if (!anime) return null;
 
-
   const handleSaveFavorite = async (item) => {
-    await addFavorite(user.id, item)
-  }
+    if (!user) {
+      Alert.alert("Error", "Please log in to add favorites");
+      return;
+    }
+
+    setIsAdding(true);
+    try {
+      await addFavorite(user.id, item);
+      Alert.alert("Success", "Added to favorites!");
+    } catch (error) {
+      console.error("Error adding favorite:", error);
+      Alert.alert("Error", "Failed to add to favorites");
+    } finally {
+      setIsAdding(false);
+    }
+  };
   return (
     <Portal>
       {/* Dimmed backdrop */}
@@ -49,7 +66,9 @@ const DetailModal = ({ visible, onDismiss, anime }) => {
           <Text className="text-white text-xs">
             Score: {anime.score ?? "N/A"}
           </Text>
- <Button title="Add to Favorites" onPress={() => handleSaveFavorite()}  className="text-white text-xs"  />
+ <Button mode="contained" buttonColor="#B69DE3" textColor="white" onPress={() => handleSaveFavorite(anime)} style={{ marginTop: 10 }}>
+   Add to Favorites
+ </Button>
           <Button onPress={onDismiss} style={{ marginTop: 10 }}>
             Close
           </Button>

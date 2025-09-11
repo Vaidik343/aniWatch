@@ -2,11 +2,12 @@ import { useAuth } from "@/context/AuthContext";
 import { Ionicons } from "@expo/vector-icons";
 import { router, Tabs, useSegments } from "expo-router";
 import { useEffect } from "react";
-import { Text } from "react-native";
-  
+import { Text, useWindowDimensions } from "react-native";
+
 const TabLayout = () => {
   const { user, authLoading } = useAuth();
   const segments = useSegments();
+  const { width, height } = useWindowDimensions();
 
   useEffect(() => {
     const currentTab = segments[1]; 
@@ -22,10 +23,12 @@ const TabLayout = () => {
     return <Text className="text-white text-center">Checking auth...</Text>;
   }
   return (
+  
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
+        
         tabBarItemStyle : {
           flex: 1,
           justifyContent: 'center',
@@ -37,9 +40,10 @@ const TabLayout = () => {
           backgroundColor: '#0f0D23',
           borderRadius: 50,
           marginHorizontal: 20,
-          marginBottom: 30,
-          
+          marginBottom: 40,
+
           height: 60,
+          width: width - 40,
           position: 'absolute',
           overflow: 'hidden',
                   borderWidth: 1,
@@ -56,7 +60,7 @@ const TabLayout = () => {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "home-sharp" : "home-outline" }
-              color={color}
+              color="#B69DE3"
               size={24}
             />
           ),
@@ -71,7 +75,7 @@ const TabLayout = () => {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "search-sharp" : "search-outline"}
-              color={color}
+            color="#B69DE3"
               size={24}
             />
           ),
@@ -86,7 +90,7 @@ const TabLayout = () => {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "bookmark-sharp" : "bookmark-outline"}
-              color={color}
+        color="#B69DE3"
               size={24}
             />
           ),
@@ -100,7 +104,7 @@ const TabLayout = () => {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "person-sharp" : "person-outline"}
-              color={color}
+          color="#B69DE3"
               size={24}
             />
           ),
@@ -114,6 +118,7 @@ const TabLayout = () => {
       />
 
     </Tabs>
+ 
   );
 };
 

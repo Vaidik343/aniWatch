@@ -13,7 +13,7 @@ export default function NavLinks() {
   const isActive = (route) => pathname === route;
   return (
     <SafeAreaView>
-     <View  className="sticky  top-5 self-center z-10 p-7 flex-row gap-5">
+     <View  className="sticky mt-3 top-5 self-center z-10 p-7 flex-row gap-5">
       {[
         { label: "Home", route: ROUTES.HOME},
         { label: "Upcoming", route: ROUTES.UPCOMING},

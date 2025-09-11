@@ -1,7 +1,8 @@
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '@/context/AuthContext';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const Login = () => {
   const { login, user } = useAuth();
@@ -25,7 +26,7 @@ const Login = () => {
   return (
     <View className="flex-1 justify-center items-center bg-[#020617] px-4">
       <View className="w-full max-w-md bg-gray-900 rounded-lg p-6 shadow-md">
-        <Text className="text-yellow-500 text-2xl font-bold mb-6 text-center">Login</Text>
+        <Text className="text-light-500 text-2xl font-bold mb-6 text-center">Login</Text>
 
         <View className="mb-4">
           <Text className="text-white text-sm font-semibold mb-2">Email</Text>
@@ -54,7 +55,7 @@ const Login = () => {
 
         <TouchableOpacity
           onPress={handleLogin}
-          className="bg-yellow-500 rounded py-2 mb-4"
+          className="text-light-500 rounded py-2 mb-4"
         >
           <Text className="text-black text-center font-semibold">Login</Text>
         </TouchableOpacity>
@@ -65,6 +66,10 @@ const Login = () => {
           </Text>
         </TouchableOpacity>
       </View>
+
+      <TouchableOpacity className=' flex-1 absolute justify-center top-12 left-8' onPress={ () => router.push("/")}>
+        <Text className='text-light-400 text-xl '><MaterialIcons  className='absolute top-4'  name="keyboard-backspace" size={24} />Back</Text>
+      </TouchableOpacity>
     </View>
   );
 };
