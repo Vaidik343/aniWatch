@@ -1,27 +1,26 @@
-import SplashScreen from "@/components/SplashScreen"; // your Lottie splash
+// import SplashScreen from "@/components/SplashScreen"; 
 import { ApiProvider } from "@/context/ApiContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { Slot } from "expo-router";
-import { useEffect, useState } from "react";
 import { PaperProvider } from "react-native-paper";
 import "./globals.css";
 
 export default function RootLayout() {
-  const [showSplash, setShowSplash] = useState(true);
+  // const [showSplash, setShowSplash] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 5000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShowSplash(false);
+  //   }, 5000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  if (showSplash) {
-    return (
-      <SplashScreen />
-    );
-  }
+  // if (showSplash) {
+  //   return (
+  //     <SplashScreen />
+  //   );
+  // }
 
   return (
     <AuthProvider>
