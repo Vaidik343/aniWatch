@@ -1,6 +1,7 @@
 import NavLinks from "@/components/NavLinks";
 import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 
+import AnimatedScreenWrapper from "@/components/AnimatedScreenWrapper";
 import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
 import { useApi } from "@/context/ApiContext";
@@ -25,6 +26,7 @@ const upcoming = () => {
  return (
   
   <View className="flex-1 bg-[#020617]">
+    <AnimatedScreenWrapper type="slide">
     <View className="z-10">
       <NavLinks />
     </View>
@@ -74,6 +76,7 @@ const upcoming = () => {
      
 
     </DetailModal>
+    </AnimatedScreenWrapper>
   </View>
 );
 

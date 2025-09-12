@@ -7,11 +7,10 @@ import React, { useState } from "react";
 import {
   FlatList,
   SafeAreaView,
-  ScrollView,
+  Text,
   TouchableOpacity,
   View
 } from "react-native";
-// import { ScrollView } from "react-native-reanimated/lib/typescript/Animated";
 
 const movie = () => {
   const { moviesAnime, loading } = useApi();
@@ -24,61 +23,49 @@ const movie = () => {
   };
 
   return (
-    <AnimatedScreenWrapper type="fade">
-     <ScrollView>
-    <View className="flex-1   bg-[#020617]">
-        <View className="z-10">
-            <NavLinks />
-          </View>
+    <SafeAreaView className="flex-1 bg-[#020617]">
+      <AnimatedScreenWrapper type="slide">
+      <View className="z-10">
+        <NavLinks />
+      </View>
 
-    {loading ? (
-         <View className="flex-1 justify-center items-center">
-              <Text className="text-red-600 text-center">Loading...</Text>
-            </View>
-    ) : (
+      {loading ? (
+        <View className="flex-1 justify-center items-center">
+          <Text className="text-red-600 text-center">Loading...</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={moviesAnime}
+          keyExtractor={(item) => item.mal_id.toString()}
+          numColumns={3}
+          columnWrapperStyle={{
+            justifyContent: "center",
+            gap: 5,
+          }}
+          contentContainerStyle={{
+            paddingBottom: 20,
+            paddingTop: 10,
+          }}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => openModel(item)}
+              className="w-[30%]"
+            >
+              <AnimeCard
+                image={{ uri: item.images?.jpg?.image_url }}
+              />
+            </TouchableOpacity>
+          )}
+        />
+      )}
 
-
-        <SafeAreaView>
-          <View className="movieData">
-            <FlatList
-              className=""
-              keyExtractor={(item) => item.mal_id.toString()}
-              data={moviesAnime}
-                numColumns={3}
-                columnWrapperStyle={{
-                  justifyContent: "center",
-                  gap: 5,
-                
-                }}
-              renderItem={({ item }) => (
-                <TouchableOpacity onPress={() => openModel(item)}  className="w-[30%]">
-                
-                    <AnimeCard
-                //  title={item.title}
-                 image={{uri: item.images?.jpg?.image_url}}
-                 />
-
-                    
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        </SafeAreaView>
-     
- 
-
-    )}
-
-     
-      
-            <DetailModal
-              visible={modalVisible}
-              onDismiss={() => setModalVisible(false)}
-              anime={selectedMovie}
-            />
-    </View>
-     </ScrollView>
-     </AnimatedScreenWrapper>
+      <DetailModal
+        visible={modalVisible}
+        onDismiss={() => setModalVisible(false)}
+        anime={selectedMovie}
+      />
+    </AnimatedScreenWrapper>
+    </SafeAreaView>
   );
 };
 

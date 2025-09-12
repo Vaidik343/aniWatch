@@ -1,5 +1,5 @@
-import { Animated } from "react-native";
-import {
+
+import Animated, {
     FadeIn,
     FadeOut,
     SlideInRight,
