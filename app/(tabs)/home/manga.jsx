@@ -1,3 +1,4 @@
+import AnimatedScreenWrapper from "@/components/AnimatedScreenWrapper";
 import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
 import NavLinks from "@/components/NavLinks";
@@ -19,6 +20,7 @@ const manga = () => {
     return <Text className="color-white text-center">Loading...</Text>;
 
   return (
+      <AnimatedScreenWrapper type="fade">
           <ScrollView>
     <View className="flex-1 justify-center  bg-[#020617]">
          <View className="z-10">
@@ -66,6 +68,7 @@ const manga = () => {
       />
     </View>
     </ScrollView>
+    </AnimatedScreenWrapper>
   );
 };
 

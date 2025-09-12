@@ -1,3 +1,4 @@
+import AnimatedScreenWrapper from "@/components/AnimatedScreenWrapper";
 import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
 import NavLinks from "@/components/NavLinks";
@@ -23,6 +24,7 @@ const movie = () => {
   };
 
   return (
+    <AnimatedScreenWrapper type="fade">
      <ScrollView>
     <View className="flex-1   bg-[#020617]">
         <View className="z-10">
@@ -76,6 +78,7 @@ const movie = () => {
             />
     </View>
      </ScrollView>
+     </AnimatedScreenWrapper>
   );
 };
 

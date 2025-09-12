@@ -12,8 +12,8 @@ export default function NavLinks() {
 
   // Calculate responsive styles based on screen height
  const containerStyle = {
-  paddingVertical : height * 0.02,
-  paddingHorizontal: height * 0.03,
+  paddingVertical : height * 0.05,
+  paddingHorizontal: height * 0.02,
   gap: height * 0.01,
  };
 
@@ -24,7 +24,7 @@ export default function NavLinks() {
   return (
     <SafeAreaView>
       <View
-        className="sticky top-1 self-center z-10 flex-row"
+        className="sticky top-4 self-center z-10 flex-row"
          style={containerStyle}
       >
         {[
@@ -36,7 +36,7 @@ export default function NavLinks() {
         ].map(({ label, route }) => (
           <Text
             key={route}
-            className={`font-bold ${
+            className={`text-xs ${
               isActive(route) ? "text-light-500" : "text-white"
             }`}
             style={textStyle}

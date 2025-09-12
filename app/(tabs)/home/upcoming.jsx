@@ -23,6 +23,7 @@ const upcoming = () => {
 
  
  return (
+  
   <View className="flex-1 bg-[#020617]">
     <View className="z-10">
       <NavLinks />

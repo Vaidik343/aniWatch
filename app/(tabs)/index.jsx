@@ -3,6 +3,7 @@
 import NavLinks from "@/components/NavLinks";
 import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 
+import AnimatedScreenWrapper from "@/components/AnimatedScreenWrapper";
 import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
 import { useApi } from "@/context/ApiContext";
@@ -23,6 +24,7 @@ const Home = () => {
     return <Text className="color-white text-center">Loading...</Text>;
 
   return (
+     <AnimatedScreenWrapper type="fade">
         <ScrollView> 
     <View className="flex-1 bg-[#020617]">
       
@@ -115,6 +117,7 @@ const Home = () => {
 
     </View>
      </ScrollView>
+     </AnimatedScreenWrapper>
   );
 };
 
