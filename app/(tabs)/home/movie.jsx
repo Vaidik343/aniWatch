@@ -24,7 +24,7 @@ const movie = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-[#020617]">
-      <AnimatedScreenWrapper type="slide">
+      <AnimatedScreenWrapper type="Slide">
       <View className="z-10">
         <NavLinks />
       </View>

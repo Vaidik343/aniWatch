@@ -9,11 +9,11 @@ import Animated, {
 export default function AnimatedScreenWrapper({children, type = "slide"})
 {
 
-const entering = 
-   type === "fade" ? FadeIn.duration(300) : SlideInRight.duration(300);
+const entering =
+   type === "fade" ? FadeIn.duration(300) : type === "Slide" ? SlideInRight.duration(300) : FadeIn.duration(300);
 
-const exiting = 
-   type === "fade" ? FadeOut.duration(300) : SlideOutLeft.duration(300);
+const exiting =
+   type === "fade" ? FadeOut.duration(300) : type === "Slide" ? SlideOutLeft.duration(300) : FadeOut.duration(300);
 
 
 return (

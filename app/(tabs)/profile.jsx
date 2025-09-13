@@ -9,10 +9,10 @@ const profile = () => {
     <View className="flex-1 bg-[#0f0D23] justify-center items-center px-6">
       <Text className="text-white text-2xl font-bold mb-4">Your Profile</Text>
 
-      {/* Optional avatar */}
-      {user?.avatar && (
+      {/* Profile Picture */}
+      {user?.profilePic && (
         <Image
-          source={{ uri: user.avatar }}
+          source={{ uri: `http://192.168.29.31:3000${user.profilePic}` }}
           className="w-24 h-24 rounded-full mb-4"
         />
       )}
@@ -25,7 +25,12 @@ const profile = () => {
         <Text className="text-gray-700 text-lg mb-2">
           <Text className="font-semibold">Email:</Text> {user?.email || "N/A"}
         </Text>
-        {/* Add more fields if needed */}
+        <Text className="text-gray-700 text-lg mb-2">
+          <Text className="font-semibold">Gender:</Text> {user?.gender || "N/A"}
+        </Text>
+        <Text className="text-gray-700 text-lg mb-2">
+          <Text className="font-semibold">Anime Type:</Text> {user?.anime_type || "N/A"}
+        </Text>
       </View>
 
       {/* Logout button */}

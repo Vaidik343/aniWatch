@@ -8,7 +8,6 @@ import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
 import { useApi } from "@/context/ApiContext";
 import { useState } from "react";
-import { ScrollView } from "react-native";
 
 const Home = () => {
   const { topAnime, nowAnime, loading } = useApi();
@@ -24,9 +23,9 @@ const Home = () => {
     return <Text className="color-white text-center">Loading...</Text>;
 
   return (
-     <AnimatedScreenWrapper type="fade">
-        <ScrollView> 
-    <View className="flex-1 bg-[#020617]">
+        <SafeAreaView className="flex-1 bg-[#020617]"> 
+     <AnimatedScreenWrapper type="Slide">
+    
       
      <View className="z-10">
                  <NavLinks />
@@ -38,24 +37,27 @@ const Home = () => {
                   <Text className="text-red-600 text-center">Loading...</Text>
                 </View>
    ) : (
-
-    <SafeAreaView>
+<>
+   
+     <View className="data  ">
             <Text className="text-light-400">Top anime</Text>
-        <View className="data mt-5 ">
          
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
 
-            className=""
-            keyExtractor={(item) => item.mal_id.toString()}
+           
             data={topAnime}
-
+            keyExtractor={(item) => item.mal_id.toString()}
+ contentContainerStyle={{
+            paddingBottom: 20,
+            paddingTop: 10,
+          }}
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => openModel(item)}>
                 <View className="w-40 h-50  ">
                  <AnimeCard
-                //  title={ item.title}
+               
                  image={{uri: item.images?.jpg?.image_url}}
                  />
                 </View>
@@ -70,32 +72,30 @@ const Home = () => {
     
 
 
-       
-    
-        {/* Now streaming */}
+    <View className="data  ">
         <Text className="text-light-400 sticky z-1">Now streaming</Text>
-           <View className="data mt-5 ">
        
           <FlatList
-
-
-            className=""
-            keyExtractor={(item) => item.mal_id.toString()}
             data={nowAnime}
+            keyExtractor={(item) => item.mal_id.toString()}
                   numColumns={3}
                 columnWrapperStyle={{
                   justifyContent: "center",
                   gap: 5,
 
                 }}
+                    contentContainerStyle={{
+            paddingBottom: 20,
+            paddingTop: 10,
+          }}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => openModel(item)}>
-                <View className="w-40 h-50  ">
+              <TouchableOpacity onPress={() => openModel(item)}               className="w-[30%]">
+             
                  <AnimeCard
-                //  title={item.title_english || item.title}
+              
                  image={{uri: item.images?.jpg?.image_url}}
                  />
-                </View>
+            
               </TouchableOpacity>
 
             )}
@@ -103,7 +103,8 @@ const Home = () => {
 
 
         </View>
-        </SafeAreaView>
+        </>
+     
    )}
         
 
@@ -115,9 +116,10 @@ const Home = () => {
       />
      
 
-    </View>
-     </ScrollView>
+  
+    
      </AnimatedScreenWrapper>
+     </SafeAreaView>
   );
 };
 

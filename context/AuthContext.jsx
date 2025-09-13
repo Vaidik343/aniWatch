@@ -17,8 +17,8 @@ export const AuthProvider = ({children}) => {
         setUser(user);
     };
 
-    const register = async(name, email, password ) => {
-        const {token,user} = await registerUser(name, email, password);
+    const register = async(name, email, password, profilePicUri, gender, animeType) => {
+        const {token,user} = await registerUser(name, email, password, profilePicUri, gender, animeType);
         await SecureStore.setItemAsync("token", token);
         setAuthToken(token);
         setUser(user);

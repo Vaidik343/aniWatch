@@ -1,23 +1,26 @@
 import { useAuth } from "@/context/AuthContext";
 import { getFavorites } from "@/utils/favoriteStorage";
-import { useEffect, useState } from "react";
-import { FlatList, Image, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
+import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import AnimeCard from "@/components/AnimeCard";
 
 const Favorite = () => {
   const { user } = useAuth();
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const loadFavorites = async () => {
-      const data = await getFavorites(user.id);
-      setFavorites(data);
-    };
-    loadFavorites();
-  }, []);
+    if (user?.id) {
+      const loadFavorites = async () => {
+        const data = await getFavorites(user.id);
+        setFavorites(data);
+      };
+      loadFavorites();
+    }
+  }, [user]);
 
   return (
-    <View className="flex-1 bg-gradient-to-b from-[#020617] to-[#0f0d23] p-4">
+    <View className="flex-1 bg-[#020617] p-4">
       <SafeAreaView>
         <View className="mb-6">
           <View className="flex-row items-center justify-center mb-4">
@@ -35,22 +38,20 @@ const Favorite = () => {
         ) : (
           <FlatList
             data={favorites}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => (item.mal_id || item.id).toString()}
+            key="favorites-grid"
+            numColumns={3}
+            columnWrapperStyle={{
+              justifyContent: "center",
+              gap: 5,
+            }}
             renderItem={({ item }) => (
-              <TouchableOpacity className="mb-4">
-                <View className="flex-row items-center bg-gray-800 p-4 rounded-2xl border border-gray-600">
-                  {item.image && (
-                    <Image source={{ uri: item.image }} className="w-16 h-16 rounded-lg mr-4" />
-                  )}
-                  <View className="flex-1">
-                    <Text className="text-white text-lg font-semibold">{item.title}</Text>
-                    {item.type && (
-                      <Text className="text-gray-400 text-sm">{item.type}</Text>
-                    )}
-                  </View>
-                  <Ionicons name="heart" size={20} color="#ff6b6b" />
-                </View>
-              </TouchableOpacity>
+              <View className="w-32 h-40 mb-4">
+                <AnimeCard
+                  title={item.title}
+                  image={{ uri: item.images?.jpg?.image_url }}
+                />
+              </View>
             )}
           />
         )}

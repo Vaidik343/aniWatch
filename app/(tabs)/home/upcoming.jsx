@@ -7,8 +7,7 @@ import DetailModal from "@/components/DetailModal";
 import { useApi } from "@/context/ApiContext";
 import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
-import { ScrollView } from "react-native";
-
+ 
 const upcoming = () => {
 
   const {upcomingAnime , loading } = useApi()
@@ -25,19 +24,19 @@ const upcoming = () => {
  
  return (
   
-  <View className="flex-1 bg-[#020617]">
-    <AnimatedScreenWrapper type="slide">
+  <SafeAreaView className="flex-1 bg-[#020617]">
+    <AnimatedScreenWrapper type="Slide">
     <View className="z-10">
       <NavLinks />
     </View>
 
     {loading ? (
       <View className="flex-1 justify-center items-center">
-        <Text className="text-red-600 text-center">Loading...</Text>
+        <Text className="text-white text-center">Loading...</Text>
       </View>
     ) : (
-      <ScrollView>
-            <SafeAreaView>
+ 
+          
         <View className="data mt-5">
           <FlatList
             data={upcomingAnime}
@@ -47,6 +46,10 @@ const upcoming = () => {
               justifyContent:"center",
               gap: 10,
             }}
+             contentContainerStyle={{
+            paddingBottom: 20,
+            paddingTop: 10,
+          }}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => openModal(item)}
@@ -56,28 +59,28 @@ const upcoming = () => {
                   image={item.images?.jpg?.image_url} 
                  
 
-                  // title={item.title}
+                 
                 />
               </TouchableOpacity>
             )}
           />
       
         </View>
-        </SafeAreaView>
-      </ScrollView>
-    )}console.log("Image URL:", item.images?.jpg?.image_url);
+        
+ 
+    )}
 
 
     <DetailModal
       visible={modelVisible}
       onDismiss={() => setModalVisible(false)}
       anime={selectedUp}
-    >
+    />
      
 
-    </DetailModal>
+
     </AnimatedScreenWrapper>
-  </View>
+  </SafeAreaView>
 );
 
 }

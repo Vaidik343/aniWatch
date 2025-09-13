@@ -24,7 +24,7 @@ const ListItem = React.memo(({ item, viewableItems, children }) => {
           alignSelf: "center",
           borderRadius: 15,
           marginVertical: 10,
-          backgroundColor: "#1f2937",
+          backgroundColor: "#0f0D23",
           padding: 10,
         },
         rStyle,

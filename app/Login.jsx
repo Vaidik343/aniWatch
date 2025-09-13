@@ -3,6 +3,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button } from 'react-native-paper';
 
 const Login = () => {
   const { login, user } = useAuth();
@@ -57,7 +58,7 @@ const Login = () => {
           onPress={handleLogin}
           className="text-light-500 rounded py-2 mb-4"
         >
-          <Text className="text-black text-center font-semibold">Login</Text>
+          <Button className="text-light-500 text-center font-semibold">Login</Button>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => router.push("/Register")}>
@@ -68,7 +69,7 @@ const Login = () => {
       </View>
 
       <TouchableOpacity className=' flex-1 absolute justify-center top-12 left-8' onPress={ () => router.push("/")}>
-        <Text className='text-light-400 text-xl '><MaterialIcons  className='absolute top-4'  name="keyboard-backspace" size={24} />Back</Text>
+        <Text className='text-light-400 text-xl '><MaterialIcons  className='absolute top-4'  name="keyboard-backspace" size={26}  /></Text>
       </TouchableOpacity>
     </View>
   );

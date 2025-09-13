@@ -66,7 +66,7 @@ const DetailModal = ({ visible, onDismiss, anime }) => {
           <Text className="text-white text-xs">
             Score: {anime.score ?? "N/A"}
           </Text>
- <Button mode="contained" buttonColor="#B69DE3" textColor="white" onPress={() => handleSaveFavorite(anime)} style={{ marginTop: 10 }}>
+ <Button mode="contained" buttonColor="red" textColor="white" onPress={() => handleSaveFavorite(anime)} style={{ marginTop: 10 }}>
    Add to Favorites
  </Button>
           <Button onPress={onDismiss} style={{ marginTop: 10 }}>

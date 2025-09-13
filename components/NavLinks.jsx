@@ -11,21 +11,21 @@ export default function NavLinks() {
   const isActive = (route) => pathname === route;
 
   // Calculate responsive styles based on screen height
- const containerStyle = {
-  paddingVertical : height * 0.05,
-  paddingHorizontal: height * 0.02,
-  gap: height * 0.01,
- };
+  const containerStyle = {
+    paddingVertical: height * 0.02,
+    paddingHorizontal: height * 0.03,
+    gap: height * 0.01,
+  };
 
- const textStyle = {
-  fontSize: height * 0.02,
- };
+  const textStyle = {
+    fontSize: height * 0.02,
+  };
 
   return (
     <SafeAreaView>
       <View
-        className="sticky top-4 self-center z-10 flex-row"
-         style={containerStyle}
+        className="sticky mt-3 top-5 self-center z-10 flex-row"
+        style={containerStyle}
       >
         {[
           { label: "Home", route: ROUTES.HOME },
@@ -36,7 +36,7 @@ export default function NavLinks() {
         ].map(({ label, route }) => (
           <Text
             key={route}
-            className={`text-xs ${
+            className={`font-bold ${
               isActive(route) ? "text-light-500" : "text-white"
             }`}
             style={textStyle}

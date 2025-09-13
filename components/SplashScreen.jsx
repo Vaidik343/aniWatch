@@ -9,7 +9,7 @@ const SplashScreen = () => {
       autoPlay
       loop={true}
       speed={2}
-      style={{width: 380, height: 1100}}
+      style={{width: 300, height: 300}}
       />
     </View>
   )
