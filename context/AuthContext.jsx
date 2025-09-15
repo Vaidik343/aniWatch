@@ -12,7 +12,7 @@ export const AuthProvider = ({children}) => {
 
     const login = async(email, password) => {
         const {token, user} = await loginUser(email, password);
-        await SecureStore.setItemAsync("token", token);
+        await SecureStore.setItemAsync("token", token); 
         setAuthToken(token);
         setUser(user);
     };
@@ -22,7 +22,7 @@ export const AuthProvider = ({children}) => {
         await SecureStore.setItemAsync("token", token);
         setAuthToken(token);
         setUser(user);
-    };
+    }; 
 
     const logout = async () => {
         await SecureStore.deleteItemAsync("token");

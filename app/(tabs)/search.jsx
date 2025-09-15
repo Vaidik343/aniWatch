@@ -27,7 +27,7 @@ export default function Search() {
             onSubmitEditing={() => searchAnimeByQuery(query)}
             className='bg-gray-800 text-white px-4 py-2 rounded-xl mb-4'
           />
-
+ 
           {
             searchLoading ? (
               <Text className='text-white text-center'>Searching....</Text>

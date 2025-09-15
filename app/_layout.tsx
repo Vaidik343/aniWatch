@@ -22,7 +22,7 @@ export default function RootLayout() {
       <SplashScreen />
     );
   }
-
+ 
   return (
     <AuthProvider>
       <ApiProvider>

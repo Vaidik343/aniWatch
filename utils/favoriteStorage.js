@@ -25,3 +25,4 @@ const removeFavorite = async (userId, mal_id) => {
 
 export { addFavorite, getFavorites, removeFavorite };
 
+ 

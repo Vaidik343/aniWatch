@@ -82,7 +82,7 @@ const Home = () => {
                 columnWrapperStyle={{
                   justifyContent: "center",
                   gap: 5,
-
+ 
                 }}
                     contentContainerStyle={{
             paddingBottom: 20,

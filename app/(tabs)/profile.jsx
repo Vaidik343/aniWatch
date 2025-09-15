@@ -16,7 +16,7 @@ const profile = () => {
           className="w-24 h-24 rounded-full mb-4"
         />
       )}
-
+ 
       {/* Display user info */}
       <View className="bg-white rounded-xl p-4 w-full max-w-md mb-6">
         <Text className="text-gray-700 text-lg mb-2">

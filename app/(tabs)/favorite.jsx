@@ -18,7 +18,7 @@ const Favorite = () => {
       loadFavorites();
     }
   }, [user]);
-
+ 
   return (
     <View className="flex-1 bg-[#020617] p-4">
       <SafeAreaView>

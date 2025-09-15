@@ -8,7 +8,7 @@ const TabLayout = () => {
   const { user, authLoading } = useAuth();
   const segments = useSegments();
   const { width, height } = useWindowDimensions();
-
+ 
   useEffect(() => {
     const currentTab = segments[1]; 
     const protectedTabs = [ "favorite", "movie", "upcoming", "manga", "suggestions"];

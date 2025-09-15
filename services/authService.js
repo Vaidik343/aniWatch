@@ -27,7 +27,7 @@ const registerUser = async(name, email, password, profilePicUri, gender, animeTy
         },
     });
     return res.data;
-}
+} 
 
 const fetchCurrentUser = async () => {
     const res = await api.get("/auth/me");

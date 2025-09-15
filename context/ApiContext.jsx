@@ -13,7 +13,7 @@ const ApiProvider =  ({ children }) => {
   const [searchLoading, setSearchLoading] = useState(false);
 
   const [loading, setLoading] = useState(true);
-
+ 
   const fetchData = async () => {
     try {
       const top = await axios.get("https://api.jikan.moe/v4/top/anime");
