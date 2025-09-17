@@ -1,48 +1,42 @@
-import SplashScreen from "@/components/SplashScreen"; // your Lottie splash
 import { ApiProvider } from "@/context/ApiContext";
 import { AuthProvider } from "@/context/AuthContext";
-import { Slot } from "expo-router";
-import { useEffect, useState } from "react";
+import { Stack, useRouter } from "expo-router";
+import { useEffect } from "react";
+import { StatusBar } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import "./globals.css";
 
 export default function RootLayout() {
-  const [showSplash, setShowSplash] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 5000);
-
-    return () => clearTimeout(timer);
+    const checkOnboarding = async () => {
+      // Temporarily force onboarding for testing
+      router.replace("/OnboardingScreen");
+      // const completed = await AsyncStorage.getItem("onboardingCompleted");
+      // if (completed === "true") {
+      //   router.replace("/(tabs)");
+      // } else {
+      //   router.replace("/OnboardingScreen");
+      // }
+    };
+    checkOnboarding();
   }, []);
 
-  if (showSplash) {
-    return (
-      <SplashScreen />
-    );
-  }
- 
   return (
     <AuthProvider>
       <ApiProvider>
         <PaperProvider>
-          <Slot />
+          <StatusBar hidden={true}  />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="Login" />
+            <Stack.Screen name="Register" />
+            <Stack.Screen name="OnboardingScreen" />
+            <Stack.Screen name="(protected)" />
+          </Stack>
         </PaperProvider>
       </ApiProvider>
     </AuthProvider>
   );
 }
-
-
-// import { Stack } from "expo-router";
-
-// export default function RootLayout() {
-//   return (
-//     <>
-//     <Stack>
-//       <Stack.Screen  name="(tabs)"   />
-//     </Stack>
-//     </>
-//   )
-// }

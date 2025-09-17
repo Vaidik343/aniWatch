@@ -1,16 +1,13 @@
-# Protected Routes Issues and Fixes
+# TODO for Improving favorite.jsx Design
 
-## Issues Identified:
-1. **Login redirect issue**: After successful login, redirects to "/" instead of protected route
-2. **Incorrect navigation in search**: Uses `/anime/${id}` instead of correct route `/(tabs)/home/${id}`
-3. **Syntax error in Login component**: Console.log in JSX
-4. **Incorrect labels in Login form**: Says "Name" instead of "Email" and "Password"
-5. **Missing route structure**: Need to ensure proper nesting of protected routes
-
-## Fixes Applied:
-- [x] Fix Login component redirect after authentication (changed to "/(tabs)")
-- [ ] Fix navigation path in search component
-- [x] Remove syntax error in Login component
-- [x] Correct form labels in Login component
-- [ ] Verify protected route structure is working
-- [ ] Test authentication flow end-to-end
+- [x] Wrap favorite.jsx screen with AnimatedScreenWrapper for smooth transitions.
+- [x] Enhance header with gradient background and improved typography.
+- [x] Improve empty state with animated icon, engaging text, and call-to-action button to navigate to search or home.
+- [x] Upgrade grid layout with better spacing, card shadows, and responsive sizing.
+- [x] Modify AnimeCard.jsx to add remove favorite button (heart icon) with long press or overlay.
+- [x] Add remove favorite functionality in favorite.jsx and ensure utils/favoriteStorage.js supports removal.
+- [x] Add search bar at the top of favorite.jsx for filtering favorites.
+- [x] Add subtle animations to list items for better UX.
+- [x] Test the app for new design and functionality.
+- [x] Verify remove favorite works correctly.
+- [x] Adjust styling for different device sizes if needed.

@@ -47,8 +47,8 @@ const Register = () => {
   }, [user]);
 
   return (
-    <View className="flex-1 justify-center items-center bg-[#020617] px-4">
-      <View className="w-full max-w-md bg-gray-900 rounded-lg p-6 shadow-md">
+    <View className="  flex-1 justify-center items-center bg-[#020617] px-4">
+      <View className="w-full max-w-md bg-gray-900 rounded-lg p-4 mt-4 shadow-md">
         <Text className="text-light-500 text-2xl font-bold mb-6 text-center">Register</Text>
 
         <View className="mb-4">
@@ -138,11 +138,11 @@ const Register = () => {
             Already have an account? Login here
           </Text>
         </TouchableOpacity>
-            <TouchableOpacity className=' flex-1 absolute justify-center top-12 left-8' onPress={ () => router.push("/")}>
+
+      </View>
+                  <TouchableOpacity className=' flex-1 absolute justify-center top-10 left-8' onPress={ () => router.push("/")}>
                 <Text className='text-light-400 text-xl '><MaterialIcons  className='absolute top-4'  name="keyboard-backspace" size={26}  /></Text>
               </TouchableOpacity>
-      </View>
-      
     </View>
   );
 };
