@@ -1,12 +1,12 @@
+import AnimatedScreenWrapper from "@/components/AnimatedScreenWrapper";
+import AnimeCard from "@/components/AnimeCard";
 import { useAuth } from "@/context/AuthContext";
 import { getFavorites, removeFavorite } from "@/utils/favoriteStorage";
 import { Ionicons } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, Text, TouchableOpacity, View, TextInput } from "react-native";
-import AnimeCard from "@/components/AnimeCard";
-import AnimatedScreenWrapper from "@/components/AnimatedScreenWrapper";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
+import { useEffect, useState } from "react";
+import { FlatList, SafeAreaView, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 const Favorite = () => {
   const { user } = useAuth();
@@ -17,6 +17,7 @@ const Favorite = () => {
     if (user?.id) {
       const loadFavorites = async () => {
         const data = await getFavorites(user.id);
+        console.log("🚀 ~ loadFavorites ~ data:", data)
         setFavorites(data);
       };
       loadFavorites();
@@ -35,7 +36,7 @@ const Favorite = () => {
   };
 
   return (
-    <AnimatedScreenWrapper>
+    <AnimatedScreenWrapper >
       <LinearGradient
         colors={['#ff6b6b', '#ff4757']}
         start={{ x: 0, y: 0 }}
@@ -48,7 +49,7 @@ const Favorite = () => {
         </View>
       </LinearGradient>
 
-      <SafeAreaView className="flex-1 px-4">
+      <SafeAreaView className="flex-1 px-4 bg-light-600  ">
         {favorites.length === 0 ? (
           <View className="flex-1 justify-center items-center">
             <Ionicons name="heart-outline" size={64} color="#ccc" />
@@ -91,6 +92,7 @@ const Favorite = () => {
                     title={item.title}
                     image={{ uri: item.images?.jpg?.image_url }}
                     onRemove={() => handleRemoveFavorite(item.mal_id)}
+                    onPress={() => {}}
                   />
                 </View>
               )}

@@ -47,26 +47,26 @@ const DetailModal = ({ visible, onDismiss, anime }) => {
             style={{ width: "100%", height: 350, borderRadius: 8 }}
           />
 
-          <Text className="text-white text-lg font-bold mt-2" numberOfLines={2}>
+          <Text className="text-black text-lg font-bold mt-2" numberOfLines={2}>
             {anime.type}
           </Text>
-          <Text className="text-white text-lg font-bold mt-2"  numberOfLines={2}>
+          <Text className="text-black text-lg font-bold mt-2"  numberOfLines={2}>
             {anime.title_english}
           </Text>
-            <Text className="text-white text-lg mt-2"  numberOfLines={1}>
+            <Text className="text-black text-lg mt-2"  numberOfLines={1}>
             Status: {anime.status ?? "N/A" }
           </Text>
-          <Text className="text-white text-sm mt-1">
+          <Text className="text-black text-sm mt-1">
             {anime.synopsis || "No synopsis available."}
           </Text>
-          <Text className="text-white text-xs mt-2">
+          <Text className="text-black text-xs mt-2">
             Episodes: {anime.episodes ?? "N/A"}
           </Text>
-        
-          <Text className="text-white text-xs">
+
+          <Text className="text-black text-xs">
             Score: {anime.score ?? "N/A"}
           </Text>
- <Button mode="contained" buttonColor="red" textColor="white" onPress={() => handleSaveFavorite(anime)} style={{ marginTop: 10 }}>
+ <Button mode="contained" textColor="white" onPress={() => handleSaveFavorite(anime)} style={{ marginTop: 10 }}>
    Add to Favorites
  </Button>
           <Button onPress={onDismiss} style={{ marginTop: 10 }}>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   modalContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: "#B69DE3",
     padding: 20,
     borderRadius: 10,
     maxHeight: "70%",

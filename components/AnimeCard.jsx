@@ -1,9 +1,9 @@
-import { Image } from "expo-image";
-import { Text, View, TouchableOpacity, Animated } from "react-native";
-import { useState, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import { useRef, useState } from "react";
+import { Animated, Text, TouchableOpacity } from "react-native";
 
-const AnimeCard = ({ title, image, onRemove }) => {
+const AnimeCard = ({ title, image, onRemove, onPress, className = "w-full" }) => {
   const [showRemove, setShowRemove] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -30,12 +30,13 @@ const AnimeCard = ({ title, image, onRemove }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.9}
+      onPress={onPress}
       onLongPress={handleLongPress}
-      className="rounded-lg overflow-hidden p-1 w-full"
+      className={`rounded-lg overflow-hidden p-1 ${className}`}
     >
       <Image
         source={image}
-        style={{ width: "100%", height: 150, borderRadius: 5, marginBottom: 8 }}
+        style={{ width: "100%", height: 200, borderRadius: 5, marginBottom: 8 }}
         contentFit="cover"
       />
       <Text className="text-white text-sm font-semibold text-justify">{title}</Text>

@@ -8,8 +8,7 @@ import {
   FlatList,
   SafeAreaView,
   Text,
-  TouchableOpacity,
-  View,
+  View
 } from "react-native";
 
 const manga = () => {
@@ -49,14 +48,11 @@ const manga = () => {
               paddingTop: 10,
             }}
             renderItem={({ item }) => (
-              <TouchableOpacity
+               <AnimeCard
                 onPress={() => openModel(item)}
                 className="w-[30%]"
-              >
-                <AnimeCard
-                  image={{ uri: item.images?.jpg?.image_url }}
-                />
-              </TouchableOpacity>
+                image={{uri: item.images?.jpg?.image_url}}
+              />
             )}
           />
         )}

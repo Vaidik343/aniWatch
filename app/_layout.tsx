@@ -1,8 +1,9 @@
 import { ApiProvider } from "@/context/ApiContext";
 import { AuthProvider } from "@/context/AuthContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Stack, useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { StatusBar } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import "./globals.css";
 
@@ -11,14 +12,12 @@ export default function RootLayout() {
 
   useEffect(() => {
     const checkOnboarding = async () => {
-      // Temporarily force onboarding for testing
-      router.replace("/OnboardingScreen");
-      // const completed = await AsyncStorage.getItem("onboardingCompleted");
-      // if (completed === "true") {
-      //   router.replace("/(tabs)");
-      // } else {
-      //   router.replace("/OnboardingScreen");
-      // }
+      const completed = await AsyncStorage.getItem("onboardingCompleted");
+      if (completed === "true") {
+        router.replace("/(tabs)");
+      } else {
+        router.replace("/OnboardingScreen");
+      }
     };
     checkOnboarding();
   }, []);
@@ -27,9 +26,10 @@ export default function RootLayout() {
     <AuthProvider>
       <ApiProvider>
         <PaperProvider>
-          <StatusBar hidden={true}  />
+          <StatusBar hidden={true} />
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="(tabs)" />
+           
             <Stack.Screen name="Login" />
             <Stack.Screen name="Register" />
             <Stack.Screen name="OnboardingScreen" />

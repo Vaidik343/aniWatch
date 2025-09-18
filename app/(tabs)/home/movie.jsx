@@ -8,7 +8,6 @@ import {
   FlatList,
   SafeAreaView,
   Text,
-  TouchableOpacity,
   View
 } from "react-native";
 
@@ -28,7 +27,7 @@ const movie = () => {
       <View className="z-10">
         <NavLinks />
       </View>
-
+ 
       {loading ? (
         <View className="flex-1 justify-center items-center">
           <Text className="text-red-600 text-center">Loading...</Text>
@@ -47,14 +46,11 @@ const movie = () => {
             paddingTop: 10,
           }}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => openModel(item)}
-              className="w-[30%]"
-            >
-              <AnimeCard
-                image={{ uri: item.images?.jpg?.image_url }}
+            <AnimeCard
+                onPress={() => openModel(item)}
+                className="w-[30%]"
+                image={{uri: item.images?.jpg?.image_url}}
               />
-            </TouchableOpacity>
           )}
         />
       )}

@@ -1,23 +1,23 @@
 // app/(tabs)/index.tsx
 
 import NavLinks from "@/components/NavLinks";
-import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, SafeAreaView, Text, View } from "react-native";
 
 import AnimatedScreenWrapper from "@/components/AnimatedScreenWrapper";
 import AnimeCard from "@/components/AnimeCard";
 import DetailModal from "@/components/DetailModal";
 import { useApi } from "@/context/ApiContext";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const Home = () => {
   const { topAnime, nowAnime, loading } = useApi();
-  const [slectedAnime, setSelectedAnime] = useState(null);
+  const [selectedAnime, setSelectedAnime] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-
-  const openModel = (anime) => {
+      console.log("Modal visible:", modalVisible);
+  const openModel = useCallback((anime) => {
     setSelectedAnime(anime);
     setModalVisible(true);
-  };
+  }, []);
 
   if (loading)
     return <Text className="color-white text-center">Loading...</Text>;
@@ -54,14 +54,14 @@ const Home = () => {
             paddingTop: 10,
           }}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => openModel(item)}>
+           
                 <View className="w-40 h-50  ">
                  <AnimeCard
-               
+               onPress={() => openModel(item)}
                  image={{uri: item.images?.jpg?.image_url}}
                  />
                 </View>
-              </TouchableOpacity>
+           
 
             )}
           />
@@ -89,14 +89,11 @@ const Home = () => {
             paddingTop: 10,
           }}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => openModel(item)}               className="w-[30%]">
-             
-                 <AnimeCard
-              
-                 image={{uri: item.images?.jpg?.image_url}}
-                 />
-            
-              </TouchableOpacity>
+              <AnimeCard
+                onPress={() => openModel(item)}
+                className="w-[30%]"
+                image={{uri: item.images?.jpg?.image_url}}
+              />
 
             )}
           />
@@ -109,16 +106,20 @@ const Home = () => {
         
 
 
-      <DetailModal
-        visible={modalVisible}
-        onDismiss={() => setModalVisible(false)}
-        anime={slectedAnime}
-      />
+    
      
 
   
     
+       <DetailModal
+        visible={modalVisible}
+        
+        onDismiss={() => setModalVisible(false)}
+        anime={selectedAnime}
+      />
      </AnimatedScreenWrapper>
+
+
      </SafeAreaView>
   );
 };
